@@ -37,25 +37,25 @@ for vol in vols:
     data[f'{vol}'] = {}
     for snap in snaps:
         data[f'{vol}'][f'{snap}'] = {}
+        # Enter all the file names in the database
         for filename in os.listdir(abs_path / str(vol) / str(snap)):
-            # Colecting data
             current_path = abs_path / str(vol) / str(snap) / str(filename)
             current_size = os.path.getsize(current_path)
+
             # Add susFile object to dictionary
             data[f'{vol}'][f'{snap}'][f'{filename}'] = SusFile(current_path)  # init new file obj
             currFile = data[f'{vol}'][f'{snap}'][f'{filename}']
             currFile.collect_metadata_content()
-            # check if can compare
+            # Checking whether the group also exists in the previous snap for comparison
             if not snap == 'snapshot_1':
                 old_path = abs_path / str(vol) / str(old_snap) / str(filename)
                 if os.path.exists(old_path):
                     old_file = data[f'{vol}'][f'{old_snap}'][f'{filename}']
                     currFile.compare(old_file, currFile)
-                    #  checks per file
+                    # Checks per file
                     currFile.compare_file_format()
-                    if currFile.grade != 70: # no changes at all
+                    if currFile.grade != 70:  # No changes at all
                         currFile.compare_antropy()
-
 
                     if currFile.grade > 70:
                         msg = currFile.file_name
@@ -65,9 +65,7 @@ for vol in vols:
                             msg = f"{currFile.file_name} \t infect at \t{snap}"
                             curr_infected_list_log.append(msg)
 
-
-        ###### end of snapshot run
-
+        # end of snapshot run
         old_snap = str(snap)
 
     with open(f"{vol}_file_list.txt", "w") as f:
