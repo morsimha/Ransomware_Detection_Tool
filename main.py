@@ -25,7 +25,7 @@ vol1_log = []
 vol2_log = []
 vol3_log = []
 
-infected_vols_logs = [vol1_log,vol2_log,vol3_log]
+infected_vols_logs = [vol1_log, vol2_log, vol3_log]
 i = 0
 curr_infected_list_log = infected_vols_logs[i]
 
@@ -62,7 +62,7 @@ for vol in vols:
                         if msg not in curr_infected_list:
                             print(msg)
                             curr_infected_list.append(msg)
-                            msg = f"{currFile.file_name} \t infect at \t{snap}"
+                            msg = "{:20s} \t Infect at \t{:20s}".format(currFile.file_name, snap)
                             curr_infected_list_log.append(msg)
 
         # end of snapshot run
@@ -71,16 +71,15 @@ for vol in vols:
     with open(f"{vol}_file_list.txt", "w") as f:
         for line in curr_infected_list:
             f.writelines(f'{line}\n')
-        f.writelines(f'number of files in current vol: {len(curr_infected_list_log)}\n')
-
+        f.writelines(f'Number of files in current vol: {len(curr_infected_list_log)}\n')
 
     with open(f"{vol}_log_file.txt", "w") as f:
         for line in curr_infected_list_log:
             f.writelines(f'{line}\n')
-        f.writelines(f'number of files in current vol: {len(curr_infected_list_log)}\n')
+        f.writelines(f'Number of files in current vol: {len(curr_infected_list_log)}\n')
 
     i += 1
-    if i<3:
+    if i < 3:
         curr_infected_list = infected_vols[i]
         curr_infected_list_log = infected_vols_logs[i]
 
