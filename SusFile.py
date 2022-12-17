@@ -2,6 +2,7 @@ import math
 import os.path
 import magic
 
+
 class SusFile:
     def __init__(self, path):
         self.path = str(path)
@@ -19,6 +20,7 @@ class SusFile:
 
         self.grade = 100  # start by suspect. 100 is severe.
         # self.next_snap_grade = self.grade  # start by suspect. 100 is severe.
+
     def get_size(self):
         return self.size
 
@@ -26,13 +28,12 @@ class SusFile:
         self.meta_data_size = self.meta_data.st_size
         self.date_modified = self.meta_data.st_mtime
 
-
     def compare(self, old_file, new_file):
         self.compare_size(old_file, new_file)
         self.compare_metadata(old_file, new_file)
         self.compare_time_modified(old_file, new_file)
 
-    def compare_size(self, old_file,new_file):
+    def compare_size(self, old_file, new_file):
         # Compare the metadata for each file
         if old_file.get_size() != new_file.size:
             pass
@@ -56,11 +57,9 @@ class SusFile:
         else:
             self.grade -= 10
 
-
     def compare_file_format(self):
         # Compare the metadata for each file
         file_format = magic.from_file(self.path)
-     #   print(file_format)
         if file_format != "data":
             self.grade -= 20
         else:
@@ -78,11 +77,9 @@ class SusFile:
             if freq > 0:
                 freq = float(freq) / size
                 ent = ent + freq * math.log(freq, 2)
-       # print(-ent / 8 > 0.8)
-        if (-ent / 8) > 0.8: #bad because infected true
+                # print(-ent / 8 > 0.8)
+        if (-ent / 8) > 0.8:  # Antropy return true if infected
             pass
         else:
             self.grade -= 50
-        # else:
-        #     print("not anttttttttttttttttttttttttttttt")
         return (-ent / 8) > 0.8
