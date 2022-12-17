@@ -18,12 +18,7 @@ class SusFile:
         # self.signature = ''
 
         self.grade = 100  # start by suspect. 100 is severe.
-       # self.next_snap_grade = self.grade  # start by suspect. 100 is severe.
-
-    # def compare_file(self):
-    #     pass
-
-
+        # self.next_snap_grade = self.grade  # start by suspect. 100 is severe.
     def get_size(self):
         return self.size
 
