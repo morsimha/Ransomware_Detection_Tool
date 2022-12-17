@@ -82,4 +82,3 @@ for vol in vols:
     if i < 3:
         curr_infected_list = infected_vols[i]
         curr_infected_list_log = infected_vols_logs[i]
-
