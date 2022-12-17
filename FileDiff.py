@@ -1,4 +1,3 @@
-import os
 from SusFile import SusFile
 
 
@@ -11,7 +10,7 @@ class FileDiff:
         self.first_infected = ""
         self.new_grade = 100
 
-        self.snap_diff_size = [1,2,3,4,5,6,7,8,9,10]
+        self.snap_diff_size = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         self.date_modified = ""
         self.date_modified = ""
         self.is_encrypted = True
