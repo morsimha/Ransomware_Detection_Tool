@@ -1,8 +1,9 @@
+# IMPORTS
 import os
 from pathlib import Path
-
 from SusFile import SusFile
-## TOGA TOGA TOGA 
+
+# TOGA TOGA TOGA
 abs_path = Path(r'C:\Users\morsimha\OneDrive - Intel Corporation\Desktop\Hacathon toga\Flash')
 
 vols = list(os.listdir(abs_path))
@@ -11,9 +12,6 @@ snaps = []
 for x in (range(10)):
     snaps.append(f'snapshot_{x+1}')
 
-print(vols)
-print(snaps)
-
 data = {}
 
 diff_list = []
@@ -21,7 +19,7 @@ vol1 = []
 vol2 = []
 vol3 = []
 
-infected_vols = [vol1,vol2,vol3]
+infected_vols = [vol1, vol2, vol3]
 
 vol1_log = []
 vol2_log = []
@@ -34,6 +32,7 @@ curr_infected_list_log = infected_vols_logs[i]
 curr_infected_list = infected_vols[i]
 old_snap = ""
 
+# Organizing the information in such a way that each file can be accessed
 for vol in vols:
     data[f'{vol}'] = {}
     for snap in snaps:
